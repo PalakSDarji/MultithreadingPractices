@@ -14,9 +14,8 @@ public class ProducerConsumerSemaphoreDemo {
             empty.acquire();
             this.item = produceItem();
             System.out.println("Produced : "+ this.item.getItemName());
-            Thread.sleep(3000);
+            Thread.sleep(300);
             full.release();
-            System.out.println("producer avail permits in full " + full.availablePermits());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -29,12 +28,10 @@ public class ProducerConsumerSemaphoreDemo {
 
     private void consume(){
         try {
-            System.out.println("consumer avail permits in full before acquire" + full.availablePermits());
             full.acquire();
-            System.out.println("consumer avail permits in full after acquire" + full.availablePermits());
             Item item = consumeItem();
             System.out.println("Consumed : "+ item.getItemName());
-            Thread.sleep(3000);
+            Thread.sleep(1000);
             empty.release();
         } catch (InterruptedException e) {
             e.printStackTrace();
